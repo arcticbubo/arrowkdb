@@ -769,7 +769,9 @@ K parseArrowSchema(K char_array)
   if (char_array->t != KG && char_array->t != KC)
     return krr((S)"char_array not 4|10h");
 
-  auto buf_reader = std::make_shared<arrow::io::BufferReader>(kG(char_array), char_array->n);
+  auto buffer = std::make_shared<arrow::Buffer>(kG(char_array), char_array->n);
+  auto buf_reader = std::make_shared<arrow::io::BufferReader>(buffer);
+
   std::shared_ptr<arrow::ipc::RecordBatchReader> reader;
   PARQUET_ASSIGN_OR_THROW(reader, arrow::ipc::RecordBatchStreamReader::Open(buf_reader));
 
@@ -801,7 +803,9 @@ K parseArrowData(K char_array, K options)
   // Type mapping overrides
   kx::arrowkdb::TypeMappingOverride type_overrides{ read_options };
 
-  auto buf_reader = std::make_shared<arrow::io::BufferReader>(kG(char_array), char_array->n);
+  auto buffer = std::make_shared<arrow::Buffer>(kG(char_array), char_array->n);
+  auto buf_reader = std::make_shared<arrow::io::BufferReader>(buffer);
+
   std::shared_ptr<arrow::ipc::RecordBatchReader> reader;
   PARQUET_ASSIGN_OR_THROW(reader, arrow::ipc::RecordBatchStreamReader::Open(buf_reader));
 
