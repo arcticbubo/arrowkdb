@@ -201,7 +201,10 @@ K writeParquet(K parquet_file, K schema_id, K array_data, K options)
   // Parquet version
   std::string parquet_version;
   write_options.GetStringOption(kx::arrowkdb::Options::PARQUET_VERSION, parquet_version);
-  if (parquet_version == "V2.4") {
+  if (parquet_version == "V2.0") {
+    parquet_props_builder.version(parquet::ParquetVersion::PARQUET_2_4);
+    parquet_props_builder.data_page_version(parquet::ParquetDataPageVersion::V2);
+  } else if (parquet_version == "V2.4") {
     parquet_props_builder.version(parquet::ParquetVersion::PARQUET_2_4);
     parquet_props_builder.data_page_version(parquet::ParquetDataPageVersion::V2);
   } else if (parquet_version == "V2.6") {
@@ -770,9 +773,8 @@ K parseArrowSchema(K char_array)
   if (char_array->t != KG && char_array->t != KC)
     return krr((S)"char_array not 4|10h");
 
-  auto buffer = std::make_shared<arrow::Buffer>(kG(char_array), char_array->n);
+  auto buffer = arrow::Buffer::Wrap(kG(char_array), char_array->n);
   auto buf_reader = std::make_shared<arrow::io::BufferReader>(buffer);
-
   std::shared_ptr<arrow::ipc::RecordBatchReader> reader;
   PARQUET_ASSIGN_OR_THROW(reader, arrow::ipc::RecordBatchStreamReader::Open(buf_reader));
 
@@ -804,9 +806,8 @@ K parseArrowData(K char_array, K options)
   // Type mapping overrides
   kx::arrowkdb::TypeMappingOverride type_overrides{ read_options };
 
-  auto buffer = std::make_shared<arrow::Buffer>(kG(char_array), char_array->n);
+  auto buffer = arrow::Buffer::Wrap(kG(char_array), char_array->n);
   auto buf_reader = std::make_shared<arrow::io::BufferReader>(buffer);
-
   std::shared_ptr<arrow::ipc::RecordBatchReader> reader;
   PARQUET_ASSIGN_OR_THROW(reader, arrow::ipc::RecordBatchStreamReader::Open(buf_reader));
 
