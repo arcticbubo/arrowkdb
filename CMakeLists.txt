@@ -2,7 +2,7 @@ if(NOT CMAKE_BUILD_TYPE)
 	set(CMAKE_BUILD_TYPE Release)
 endif()
 
-cmake_minimum_required(VERSION 2.8.12...3.10)
+cmake_minimum_required(VERSION 3.5...3.10)
 project(arrowkdb CXX)
 
 set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH};${ARROW_INSTALL}")
