@@ -44,11 +44,11 @@ Conversely, Arrow is an in-memory format meant for direct and efficient use for 
 ### Requirements
 
 - kdb+ ≥ 3.5 64-bit (Linux/MacOS/Windows)
-- Apache Arrow ≥ 9.0.0 (or ≥ 6.0.0 if building `arrowkdb` from source)
+- Apache Arrow ≥ 24.0.0 (or ≥ 6.0.0 if building `arrowkdb` from source)
 - C++14 or later
-- CMake ≥ 3.1.3
+- CMake ≥ 3.5
 
-> :warning: If using the packaged version of `arrowkdb` you should install version 9.0.0 of Apache Arrow
+> :warning: If using the packaged version of `arrowkdb` you should install version 24.0.0 of Apache Arrow
 
 
 ### Third-party library installation
@@ -57,11 +57,11 @@ Conversely, Arrow is an in-memory format meant for direct and efficient use for 
 
 Follow the instructions [here](https://arrow.apache.org/install/#c-and-glib-c-packages-for-debian-gnulinux-ubuntu-and-centos) to install `libarrow-dev` and `libparquet-dev` from Apache's APT or Yum repositories.
 
-Note: If using the packaged version of `arrowkdb` you should install version 9.0.0 of both:
+Note: If using the packaged version of `arrowkdb` you should install version 24.0.0 of both:
 
 ```bash
-sudo apt install -y -V libarrow-dev=9.0.0-1
-sudo apt install -y -V libparquet-dev=9.0.0-1
+sudo apt install -y -V libarrow-dev=24.0.0-1
+sudo apt install -y -V libparquet-dev=24.0.0-1
 ```
 
 #### macOS
@@ -79,10 +79,10 @@ C:\Git> git clone https://github.com/apache/arrow.git
 C:\Git> cd arrow
 ```
 
-Switch to the `9.0.0` tag:
+Switch to the `24.0.0` tag:
 
 ```bash
-C:\Git\arrow> git checkout refs/tags/apache-arrow-9.0.0 --
+C:\Git\arrow> git checkout refs/tags/apache-arrow-24.0.0 --
 C:\Git> cd cpp
 ```
 
