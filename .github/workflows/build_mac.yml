@@ -38,7 +38,7 @@ jobs:
         run: |
           git clone https://github.com/apache/arrow.git
           cd arrow
-          git checkout refs/tags/apache-arrow-21.0.0 --
+          git checkout refs/tags/apache-arrow-24.0.0 --
           cmake -S cpp -B cpp/build -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{ env.BUILD_HOME }} -DARROW_ORC=ON -DARROW_PARQUET=ON -DARROW_WITH_SNAPPY=ON -DARROW_WITH_ZLIB=ON -DARROW_WITH_ZSTD=ON -DARROW_WITH_BROTLI=ON -DARROW_BUILD_STATIC=OFF -DARROW_COMPUTE=OFF -DARROW_DEPENDENCY_USE_SHARED=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5
           cmake --build cpp/build --target install -j
           cd ..
