@@ -207,6 +207,9 @@ K writeParquet(K parquet_file, K schema_id, K array_data, K options)
   } else if (parquet_version == "V2.4") {
     parquet_props_builder.version(parquet::ParquetVersion::PARQUET_2_4);
     parquet_props_builder.data_page_version(parquet::ParquetDataPageVersion::V2);
+    // Parquet 2.4 stores timestamps at microsecond precision.
+    arrow_props_builder.coerce_timestamps(arrow::TimeUnit::MICRO);
+    arrow_props_builder.allow_truncated_timestamps();
   } else if (parquet_version == "V2.6") {
     parquet_props_builder.version(parquet::ParquetVersion::PARQUET_2_6);
     parquet_props_builder.data_page_version(parquet::ParquetDataPageVersion::V2);
