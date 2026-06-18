@@ -46,7 +46,7 @@ Conversely, Arrow is an in-memory format meant for direct and efficient use for 
 - kdb+ ≥ 3.5 64-bit (Linux/MacOS/Windows)
 - Apache Arrow ≥ 24.0.0 (or ≥ 6.0.0 if building `arrowkdb` from source)
 - C++14 or later
-- CMake ≥ 3.1.3
+- CMake ≥ 3.5
 
 > :warning: If using the packaged version of `arrowkdb` you should install version 24.0.0 of Apache Arrow
 
